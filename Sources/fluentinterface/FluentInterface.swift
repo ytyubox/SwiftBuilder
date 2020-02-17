@@ -40,3 +40,7 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
     }
   }
 }
+
+extension FluentInterface: CustomStringConvertible {
+	public var description: String {"FluentInterface"}
+}
