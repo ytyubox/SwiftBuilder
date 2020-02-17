@@ -12,7 +12,7 @@ jobs:
     - name: Generate xcode project
       run: swift package generate-xcodeproj --enable-code-coverage
     - name: Generate xcode test report
-      run: xcodebuild -scheme fluentinterface-Package clean test
+      run: xcodebuild -scheme FluentInterface-Package clean test
     - name: Codecov
       uses: codecov/codecov-action@v1.0.5
       with:
