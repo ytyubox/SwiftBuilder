@@ -8,7 +8,7 @@ fileprivate class TargetObject:Equatable {
 	var value = 0
 }
 
-final class fluentinterfaceTests: XCTestCase {
+final class fluentinterfaceObjectTests: XCTestCase {
 	func testFlentInterfaceWithObject() {
 		let value = 2
 		let objectOLDWay:TargetObject = {
@@ -21,23 +21,7 @@ final class fluentinterfaceTests: XCTestCase {
 		XCTAssertEqual(objectOLDWay, objectNewWay)
 	}
 	
-	func testFlentInterfaceWithData() {
-		struct TargetData:Equatable {
-			var value = 0
-		}
-		let value = 2
-		let objectOLDWay:TargetData = {
-			var object = TargetData()
-			object.value = value
-			return object
-		}()
-		let objectNewWay = TargetData()+
-			.value(value)-
-		XCTAssertEqual(objectOLDWay, objectNewWay)
-	}
-	
 	static var allTests = [
-		("testFlentInterfaceWithObject", testFlentInterfaceWithObject),
-		("testFlentInterfaceWithData", testFlentInterfaceWithData),
+		("testFlentInterfaceWithObject", testFlentInterfaceWithObject)
 	]
 }
