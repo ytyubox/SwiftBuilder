@@ -1,4 +1,4 @@
-name: run all test
+name: run test
 jobs:
   run-macOS:
     runs-on: macos-latest
