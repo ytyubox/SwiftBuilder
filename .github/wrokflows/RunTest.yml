@@ -1,8 +1,0 @@
-name: run test
-jobs:
-  run-macOS:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Check out from Git
-        run: swift test
