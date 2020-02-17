@@ -26,14 +26,18 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a decentraliz
         targets: [
         .target(
             name: "...",
-            dependencies: ["fluentinterface"])
+            dependencies: ["FluentInterface"])
     )
     ```
 
 2. Import the Weak module.
 
     ```swift
-    import SwiftDataStructure
+    import FluentInterface
+	let point = CGPoint()+
+				.x(1)
+				.y(2)-
+    
     ```
 
 ## Contribute
