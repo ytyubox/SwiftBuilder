@@ -3,6 +3,7 @@
 Fluent interface is a fast way to assign new value to the property  of the object. 
 
 ![Swift](https://github.com/ytyubox/fluentinterface/workflows/Swift/badge.svg)
+[![codecov](https://codecov.io/gh/ytyubox/fluentinterface/branch/master/graph/badge.svg)](https://codecov.io/gh/ytyubox/fluentinterface)
 [![Platform](https://img.shields.io/badge/platform-macos%20%7C%20ios%20%7C%20watchos%20%7C%20ipados%20%7C%20tvos-lightgrey)](https://github.com/ytyubox/Weak)
 [![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode)
