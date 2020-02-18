@@ -103,6 +103,24 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a decentraliz
     )
     ```
 
+## Using your operator
+We can using Customize by adopt the prefix and postfix operator as follow:
+
+```swift
+import FluentInterface
+
+postfix operator >|
+public postfix func >| <T>(lhs: T) -> FluentInterface<T> {
+  return lhs+
+}
+
+postfix operator |>
+
+public postfix func |> <T>(lhs: FluentInterface<T>) -> T {
+  return lhs-
+}
+```
+
 ## Contribute
 
 Working on your first Pull Request? You can learn how from this *free* series, [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
