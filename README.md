@@ -40,6 +40,23 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a decentraliz
 				.y(2)-
     
     ```
+## Using your operator
+We can using Customize by adopt the prefix and postfix operator as follow:
+
+```swift
+import FluentInterface
+
+postfix operator >|
+public postfix func >| <T>(lhs: T) -> FluentInterface<T> {
+  return lhs+
+}
+
+postfix operator |>
+
+public postfix func |> <T>(lhs: FluentInterface<T>) -> T {
+  return lhs-
+}
+```
 
 ## Contribute
 
