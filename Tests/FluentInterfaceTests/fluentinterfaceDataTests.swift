@@ -13,7 +13,8 @@ final class fluentinterfaceDataTests: XCTestCase {
 			return object
 		}()
 		let objectNewWay = TargetData()+
-			.value(value)-
+			.value(value)
+			.unWrappingSubject()
 		XCTAssertEqual(objectOLDWay, objectNewWay)
 	}
 	
