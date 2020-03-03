@@ -45,10 +45,18 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
     subject
 	}
 	/// [Fluentinterface] Quick way to touch subject and remain fluent interface
-	/// - Parameter handle: A clou
+	/// - Parameter handlel: A cloure to get the subject
 	public nonmutating func handlingSubject(_ handle:
 		(Subject) -> Void) -> Self {
 		handle(subject)
 		return self
+	}
+	/// [Fluentinterface] Quick way to manipulate subject and remain fluent interface
+	/// - Parameter handle: A cloure to inout set subject
+	public nonmutating func manipulateSubjct(_ handle:
+		(inout Subject) -> Void) -> Self {
+		var subject = self.subject
+		handle(&subject)
+		return FluentInterface(subject: subject)
 	}
 }
