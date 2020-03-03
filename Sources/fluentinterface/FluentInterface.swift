@@ -39,4 +39,9 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
       return FluentInterface(subject: subject)
     }
   }
+  
+  /// [Flentinterface] get the subject.
+  public func unwrappingSubject() -> Subject {
+    subject
+  }
 }
