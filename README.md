@@ -73,8 +73,17 @@ struct Point {
 
 let point = Point()+
               .x(1)
-              .y(2)-
+              .y(2)
+              .unwrappingSubject()
 // point now have x:1 and y: 2
+```
+
+using operator
+```swift
+let point2 = Point()+
+               .x(1)
+               .y(2)-
+
 ```
 
 ## Requirements
