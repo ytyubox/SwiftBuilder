@@ -44,4 +44,9 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
   public func unwrappingSubject() -> Subject {
     subject
   }
+	public func handlingSubject(_ handle:
+		(Subject) -> Void) -> Self {
+		handle(subject)
+		return self
+	}
 }
