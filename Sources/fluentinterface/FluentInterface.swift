@@ -43,8 +43,10 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
   /// [Flentinterface] get the subject.
   public func unwrappingSubject() -> Subject {
     subject
-  }
-	public func handlingSubject(_ handle:
+	}
+	/// [Fluentinterface] Quick way to touch subject and remain fluent interface
+	/// - Parameter handle: A clou
+	public nonmutating func handlingSubject(_ handle:
 		(Subject) -> Void) -> Self {
 		handle(subject)
 		return self
