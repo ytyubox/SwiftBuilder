@@ -5,13 +5,19 @@
 //  Created by 游宗諭 on 2020/3/12.
 //
 
+postfix operator ++
+
+public postfix func ++ <T>(lhs: [T]) -> FIArray<T> {
+	return FIArray(subjectList: lhs)
+}
+
 import Foundation
 
 @dynamicMemberLookup public struct FIArray<Subject> {
 	let subjectList: [Subject]
-	typealias FISetter<Value> = ((Value) -> FIArray<Subject>)
+	public typealias FISetter<Value> = ((Value) -> FIArray<Subject>)
 	
-	subscript<Value>(dynamicMember keyPath:WritableKeyPath<Subject,Value>) -> FISetter<Value> {
+	public subscript<Value>(dynamicMember keyPath:WritableKeyPath<Subject,Value>) -> FISetter<Value> {
 		var subjectList = self.subjectList
 		
 		return { value in
@@ -20,6 +26,9 @@ import Foundation
 			}
 			return FIArray(subjectList: subjectList)
 		}
+	}
+	public func unwrappingSubject() -> [Subject] {
+		subjectList
 	}
 }
 
