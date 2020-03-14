@@ -25,21 +25,22 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
 ///     .x(1)-
 /// ```
 /// resource  https://www.appcoda.com.tw/fluent-interface/
-@dynamicMemberLookup public struct FluentInterface<Subject> {
+@dynamicMemberLookup public final class FluentInterface<Subject> {
   
   public typealias FISetter<Value> = ((Value) -> FluentInterface<Subject>)
   
-  let subject: Subject
+	public init(subject: Subject) {
+		self.subject = subject
+	}
+  var subject: Subject
   
   // 因為要動到 subject 的屬性，所以 keyPath 的型別必須是 WritableKeyPath
   // 回傳值是一個 Setter 方法
-  public subscript<Value>(dynamicMember keyPath: WritableKeyPath<Subject, Value>) -> ((Value) -> FluentInterface<Subject>) {
-    
-    var subject = self.subject
+	public subscript<Value>(dynamicMember keyPath: WritableKeyPath<Subject, Value>) -> ((Value) -> FluentInterface<Subject>) {
     
     return { value in
-      subject[keyPath: keyPath] = value
-      return FluentInterface(subject: subject)
+		self.subject[keyPath: keyPath] = value
+      return self
     }
   }
   
@@ -49,17 +50,16 @@ public postfix func - <T>(lhs: FluentInterface<T>) -> T {
   }
   /// [Fluentinterface] Quick way to touch subject and remain fluent interface
   /// - Parameter handlel: A cloure to get the subject
-  public nonmutating func handlingSubject(_ handle:
+  public  func handlingSubject(_ handle:
     (Subject) -> Void) -> Self {
     handle(subject)
     return self
   }
   /// [Fluentinterface] Quick way to manipulate subject and remain fluent interface
   /// - Parameter handle: A cloure to inout set subject
-  public nonmutating func manipulateSubjct(_ handle:
+  public  func manipulateSubjct(_ handle:
     (inout Subject) -> Void) -> Self {
-    var subject = self.subject
     handle(&subject)
-    return FluentInterface(subject: subject)
+	return self
   }
 }
