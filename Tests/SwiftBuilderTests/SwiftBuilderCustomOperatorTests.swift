@@ -5,13 +5,13 @@ import SwiftBuilder
 
 postfix operator >|
 public postfix func >| <T>(lhs: T) -> Builder<T> {
-  return lhs+
+  return Builder(lhs)
 }
 
 postfix operator |>
 
 public postfix func |> <T>(lhs: Builder<T>) -> T {
-  return lhs-
+    return lhs.build()
 }
 
 class CustomOperatorTests:XCTestCase {

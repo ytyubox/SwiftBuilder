@@ -10,9 +10,9 @@ class FluentinterfaceHandlerTests: XCTestCase {
 				int *= 2
 			}
 		}
-		let target = TestTarget()+
+		let target = Builder(TestTarget())
 			.handlingSubject{$0.doubleIt()}
-		.unwrappingSubject()
+		.build()
 		
 		XCTAssertEqual(target.int, 2)
 	}
@@ -23,9 +23,9 @@ class FluentinterfaceHandlerTests: XCTestCase {
 				int *= 2
 			}
 		}
-		let target = TestTarget()+
+		let target = Builder(TestTarget())
 			.manipulateSubjct{$0.doubleIt()}
-		.unwrappingSubject()
+		.build()
 		
 		XCTAssertEqual(target.int, 2)
 	}

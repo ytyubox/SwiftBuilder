@@ -1,24 +1,12 @@
-postfix operator +
-
-public postfix func + <T>(lhs: T) -> Builder<T> {
-    return Builder(lhs)
-}
-
-postfix operator -
-
-public postfix func - <T>(lhs: Builder<T>) -> T {
-    return lhs.subject
-}
-
-/// [Flentinterface] Assign poperty within a wrapper
+/// [SwiftBuilder] Assign poperty within a wrapper
 /// ## before
 /// ```swift
-///let point: CGPoint = {
+/// let point: CGPoint = {
 ///   var point = CGPoint()
 ///   point.x = 1
 ///   return point
 /// }()
-///```
+/// ```
 /// ## after
 /// ```swift
 /// let point = CGPoint()+
@@ -26,6 +14,8 @@ public postfix func - <T>(lhs: Builder<T>) -> T {
 /// ```
 /// resource  https://www.appcoda.com.tw/fluent-interface/
 @dynamicMemberLookup public struct Builder<Subject> {
+    /// [SwiftBuilder] create a Builder for Subject
+    /// - Parameter subject: The object that was created
     public init(_ subject: Subject) {
         self.subject = subject
     }
@@ -33,7 +23,8 @@ public postfix func - <T>(lhs: Builder<T>) -> T {
     
     typealias FISetter<Value> = ((Value) -> Builder<Subject>)
     
-    let subject: Subject
+    /// the Subject than builder build for
+    public let subject: Subject
     
     // 因為要動到 subject 的屬性，所以 keyPath 的型別必須是 WritableKeyPath
     // 回傳值是一個 Setter 方法
@@ -47,18 +38,18 @@ public postfix func - <T>(lhs: Builder<T>) -> T {
         }
     }
     
-    /// [Flentinterface] get the subject.
-    public func unwrappingSubject() -> Subject {
+    /// [SwiftBuilder] get the subject.
+    public func build() -> Subject {
         subject
     }
-    /// [Fluentinterface] Quick way to touch subject and remain fluent interface
+    /// [SwiftBuilder] Quick way to touch subject and remain fluent interface
     /// - Parameter handlel: A cloure to get the subject
     public nonmutating func handlingSubject(_ handle:
         (Subject) -> Void) -> Self {
         handle(subject)
         return self
     }
-    /// [Fluentinterface] Quick way to manipulate subject and remain fluent interface
+    /// [SwiftBuilder] Quick way to manipulate subject and remain fluent interface
     /// - Parameter handle: A cloure to inout set subject
     public nonmutating func manipulateSubjct(_ handle:
         (inout Subject) -> Void) -> Self {
@@ -67,7 +58,3 @@ public postfix func - <T>(lhs: Builder<T>) -> T {
         return Builder(subject)
     }
 }
-
-//extension Builder where Subject == Optional<Subject> {
-//    
-//}

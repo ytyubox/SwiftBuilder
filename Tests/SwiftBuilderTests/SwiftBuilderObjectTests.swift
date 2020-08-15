@@ -8,21 +8,21 @@ fileprivate class TargetObject:Equatable {
 	var value = 0
 }
 
-final class fluentinterfaceObjectTests: XCTestCase {
-	func testFlentInterfaceWithObject() {
+final class SwiftBuilderObjectTests: XCTestCase {
+	func testSwiftBuilderWithObject() {
 		let value = 2
 		let objectOLDWay:TargetObject = {
 			let object = TargetObject()
 			object.value = value
 			return object
 		}()
-		let objectNewWay = TargetObject()+
+		let objectNewWay = Builder(TargetObject())
 			.value(value)
-			.unwrappingSubject()
+			.build()
 		XCTAssertEqual(objectOLDWay, objectNewWay)
 	}
 	
 	static var allTests = [
-		("testFlentInterfaceWithObject", testFlentInterfaceWithObject)
+		("testSwiftBuilderWithObject", testSwiftBuilderWithObject)
 	]
 }
