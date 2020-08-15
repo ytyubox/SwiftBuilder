@@ -1,5 +1,5 @@
 import XCTest
-import FluentInterface
+import SwiftBuilder
 
 fileprivate func == (lhs: TargetObject, rhs: TargetObject) -> Bool {
 	return lhs.value == rhs.value

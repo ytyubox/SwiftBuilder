@@ -1,5 +1,5 @@
-import FluentInterface
 import XCTest
+import SwiftBuilder
 
 class FluentinterfaceHandlerTests: XCTestCase {
 	

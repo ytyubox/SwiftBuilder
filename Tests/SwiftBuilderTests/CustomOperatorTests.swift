@@ -1,23 +1,16 @@
-//
-//  CustomOperatorTests.swift
-//  
-//
-//  Created by 游宗諭 on 2020/2/18.
-//
-
 import XCTest
-import FluentInterface
+import SwiftBuilder
 
 
 
 postfix operator >|
-public postfix func >| <T>(lhs: T) -> FluentInterface<T> {
+public postfix func >| <T>(lhs: T) -> Builder<T> {
   return lhs+
 }
 
 postfix operator |>
 
-public postfix func |> <T>(lhs: FluentInterface<T>) -> T {
+public postfix func |> <T>(lhs: Builder<T>) -> T {
   return lhs-
 }
 
