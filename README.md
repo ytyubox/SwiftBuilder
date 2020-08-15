@@ -1,4 +1,4 @@
-# Fluent Interface
+# SwiftBuilder
 
 Fluent interface is a fast way to assign new value to the property  of the object. Thanks to [Hsu Li-Heng](https://lihenghsu.com/) and his great article [利用 Swift 5.1 新功能實作 Fluent Interface　讓程式碼更易讀流暢！](https://www.appcoda.com.tw/fluent-interface/). 
 
