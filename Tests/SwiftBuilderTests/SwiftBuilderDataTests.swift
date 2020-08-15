@@ -1,8 +1,8 @@
 import XCTest
-import FluentInterface
+import SwiftBuilder
 
-final class fluentinterfaceDataTests: XCTestCase {
-	func testFlentInterfaceWithData() {
+final class SwiftBuilderDataTests: XCTestCase {
+	func testSwiftBuilderWithData() {
 		struct TargetData:Equatable {
 			var value = 0
 		}
@@ -12,13 +12,13 @@ final class fluentinterfaceDataTests: XCTestCase {
 			object.value = value
 			return object
 		}()
-		let objectNewWay = TargetData()+
+		let objectNewWay = Builder(TargetData())
 			.value(value)
-			.unwrappingSubject()
+			.build()
 		XCTAssertEqual(objectOLDWay, objectNewWay)
 	}
 	
 	static var allTests = [
-		("testFlentInterfaceWithData", testFlentInterfaceWithData),
+		("testSwiftBuilderWithData", testSwiftBuilderWithData),
 	]
 }

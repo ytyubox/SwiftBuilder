@@ -1,8 +1,8 @@
-# Fluent Interface
+# SwiftBuilder
 
-Fluent interface is a fast way to assign new value to the property  of the object. Thanks to [Hsu Li-Heng](https://lihenghsu.com/) and his great article [利用 Swift 5.1 新功能實作 Fluent Interface　讓程式碼更易讀流暢！](https://www.appcoda.com.tw/fluent-interface/). 
+Swift Builder is a fast way to assign new value to the property  of the object. Thanks to [Hsu Li-Heng](https://lihenghsu.com/) and his great article [利用 Swift 5.1 新功能實作 Fluent Interface　讓程式碼更易讀流暢！](https://www.appcoda.com.tw/fluent-interface/). 
 
-![Swift](https://github.com/ytyubox/fluentinterface/workflows/Swift/badge.svg) [![codecov](https://codecov.io/gh/ytyubox/fluentinterface/branch/master/graph/badge.svg)](https://codecov.io/gh/ytyubox/fluentinterface) [![Platform](https://img.shields.io/badge/platform-macos%20%7C%20ios%20%7C%20watchos%20%7C%20ipados%20%7C%20tvos-lightgrey)](https://github.com/ytyubox/Weak) [![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg)](https://swift.org) [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode) [![SPM](https://img.shields.io/badge/SPM-Compatible-blue)](https://swift.org/package-manager) [![MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
+![Swift bulid](https://github.com/ytyubox/SwiftBulider/workflows/Swift/badge.svg) [![codecov](https://codecov.io/gh/ytyubox/SwiftBuilder/branch/master/graph/badge.svg)](https://codecov.io/gh/ytyubox/SwiftBuilder) [![Platform](https://img.shields.io/badge/platform-macos%20%7C%20ios%20%7C%20watchos%20%7C%20ipados%20%7C%20tvos-lightgrey)](https://github.com/ytyubox/SwiftBuilder) [![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg)](https://swift.org) [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode) [![SPM](https://img.shields.io/badge/SPM-Compatible-blue)](https://swift.org/package-manager) [![MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 
 ## Key Concept of Fluent Interface
@@ -53,7 +53,7 @@ let person = Person()
     .set(favoriteQuote: "I like turtles")
 ```
 
-## In Swift 5.1
+## After Swift 5.1
 
 By the power of Dynamic Member Lookup in Swift 4.2, and it's followed up evolve feature, Key Path Member Lookup in Swift 5.1 we can acheive Fluent Interface, by the article of Hsu Li-Heng: [[利用 Swift 5.1 新功能實作 Fluent Interface　讓程式碼更易讀流暢！]](https://www.appcoda.com.tw/fluent-interface/). I Highly recommend reading through.
 
@@ -61,7 +61,11 @@ By the power of Dynamic Member Lookup in Swift 4.2, and it's followed up evolve 
 ## How to use
 
 ```swift
-import FluentInterface
+// SwiftBuilderExport.swift
+ @_exported import struct SwiftBuilder.Builder 
+```
+
+```swift
 struct Point {
     var x:Int
     var y:Int
@@ -71,19 +75,11 @@ struct Point {
     }
 }
 
-let point = Point()+
+let point = Builder(Point())
               .x(1)
               .y(2)
-              .unwrappingSubject()
+              .build()
 // point now have x:1 and y: 2
-```
-
-using operator
-```swift
-let point2 = Point()+
-               .x(1)
-               .y(2)-
-
 ```
 
 ## Requirements
@@ -103,12 +99,12 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a decentraliz
         ...
         dependencies: [
           ...
-            .Package(url: "https://github.com/ytyubox/fluentinterface", from: "1.0.0"),
+            .Package(url: "https://github.com/ytyubox/SwiftBuilder", from: "2.0.0"),
         ],
         targets: [
         .target(
             name: "...",
-            dependencies: ["FluentInterface"])
+            dependencies: ["SwiftBuilder"])
     )
     ```
 
@@ -116,17 +112,17 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a decentraliz
 We can using Customize by adopt the prefix and postfix operator as follow:
 
 ```swift
-import FluentInterface
+import SwiftBuilder
 
 postfix operator >|
 public postfix func >| <T>(lhs: T) -> FluentInterface<T> {
-  return lhs+
+  return Builder(lhs)
 }
 
 postfix operator |>
 
 public postfix func |> <T>(lhs: FluentInterface<T>) -> T {
-  return lhs-
+    return lhs.build()
 }
 ```
 
