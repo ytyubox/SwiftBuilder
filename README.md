@@ -126,6 +126,26 @@ public postfix func |> <T>(lhs: FluentInterface<T>) -> T {
 }
 ```
 
+## Performance
+
+On setting over 60 property of one Struct, create over 10000 object in a for loop, result as below:
+1. Anonymous Function test
+Test Case '-[FluentInterfaceTests.PerformanceTests testPerformanceForAnonymousFunction]' 
+measured [Time, seconds] average: 0.797,
+relative standard deviation: 1.820%,
+values: [0.811694, 0.808197, 0.787348, 0.787472, 0.802066, 0.778512, 0.780018, 0.783218, 0.811763, 0.819671]
+
+2. FluentInterface with postfix operator
+Test Case '-[FluentInterfaceTests.PerformanceTests testPerformanceForFluentInterface]'
+measured [Time, seconds] average: 17.774,
+relative standard deviation: 3.100%,
+values: [16.615853, 17.032907, 17.772190, 18.131596, 17.982816, 18.198577, 18.122142, 18.555516, 17.528160, 17.797965]
+
+3. FluentInterface without any operator
+Test Case '-[FluentInterfaceTests.PerformanceTests testPerformanceForFluentInterfaceWithoutOperator]' measured [Time, seconds] average: 0.173, relative standard deviation: 5.115%, values: [0.178953, 0.165654, 0.195471, 0.180594, 0.167961, 0.166865, 0.171597, 0.166450, 0.168342, 0.170862]
+
+ARC managing works fine, the FluentInterface object is auto release once call unwrappingSubject(only if using inline Building paradigm). 
+
 ## Contribute
 
 Working on your first Pull Request? You can learn how from this *free* series, [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
