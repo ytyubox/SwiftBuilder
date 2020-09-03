@@ -12,7 +12,7 @@ public protocol CreateByVoid {
 }
 extension Builder: CreateByVoid where Subject: CreateByVoid{
     public init() {
-        subject = .init()
+        subject = Subject()
     }
 }
 
